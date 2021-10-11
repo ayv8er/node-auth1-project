@@ -5,7 +5,18 @@ const db = require("../../data/db-config");
  */
 async function find() {
   const users = await db("users");
-  return users;
+
+  const results = [];
+
+  users.map((item) => {
+    let result = {
+      user_id: item.user_id,
+      username: item.username,
+    };
+    results.push(result);
+  });
+
+  return results;
 }
 
 /**
