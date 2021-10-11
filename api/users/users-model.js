@@ -29,8 +29,15 @@ function findBy(filter) {
 /**
   resolves to the user { user_id, username } with the given user_id
  */
-function findById(user_id) {
-  return db("users").where("user_id", user_id).first();
+async function findById(user_id) {
+  const user = await db("users").where("user_id", user_id).first();
+
+  const result = {
+    user_id: user.user_id,
+    username: user.username,
+  };
+
+  return result;
 }
 
 /**
