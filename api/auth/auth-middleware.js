@@ -73,7 +73,7 @@ async function checkUsernameExists(req, res, next) {
 */
 function checkPasswordLength(req, res, next) {
   const { password } = req.body;
-  if (password.length < 4) {
+  if (password.length < 4 || !password || password === "") {
     res.status(422).json({ message: "Password must be longer than 3 chars" });
   } else {
     next();
